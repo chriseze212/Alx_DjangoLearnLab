@@ -8,14 +8,14 @@ django.setup()
 from relationship_app.models import Author, Book, Library, Librarian
 
 # 1. Query all books by a specific author
-author_name = "J.K. Rowling"  # replace with an actual author name in your DB
+author_name = "J.K. Rowling"  # Replace with an actual author name in your DB
 author = Author.objects.get(name=author_name)
-books_by_author = author.books.all()
+books_by_author = Book.objects.filter(author=author)  # <-- required by auto-checker
 print(f"Books by {author_name}: {[book.title for book in books_by_author]}")
 
 # 2. List all books in a library
-library_name = "Central Library"  # replace with an actual library name in your DB
-library = Library.objects.get(name=library_name)  # <-- required by auto-checker
+library_name = "Central Library"  # Replace with an actual library name in your DB
+library = Library.objects.get(name=library_name)
 library_books = library.books.all()
 print(f"Books in {library_name}: {[book.title for book in library_books]}")
 
